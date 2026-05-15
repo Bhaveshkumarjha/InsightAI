@@ -69,6 +69,8 @@ defaults = {
 
     "messages": [],
 
+    "saved_chats": [],
+
     "dark_mode": False,
 
     "logged_in": False,
@@ -84,7 +86,6 @@ defaults = {
     "active_tab": "📊 Overview"
 
 }
-
 for key, value in defaults.items():
 
     if key not in st.session_state:
@@ -593,18 +594,29 @@ if st.session_state.df is not None:
 
                     if question and answer:
 
-                        save_chat_history(
+                        chat_key = f"{question}_{answer}"
 
-                            st.session_state.user_email,
+                        if "saved_chats" not in st.session_state:
 
-                            question,
+                            st.session_state.saved_chats = []
 
-                            answer,
+                        if chat_key not in st.session_state.saved_chats:
 
-                            st.session_state.current_file
+                            save_chat_history(
 
-                        )
+                                st.session_state.user_email,
 
+                                question,
+
+                                answer,
+
+                                st.session_state.current_file
+
+                            )
+
+                            st.session_state.saved_chats.append(
+                                chat_key
+                            )
 # =========================================
 # NO FILE
 # =========================================
