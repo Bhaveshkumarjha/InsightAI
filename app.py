@@ -64,23 +64,35 @@ st.set_page_config(
 st.markdown("""
 <style>
 
+/* FORCE SIDEBAR SHOW */
 
-
-/* main content spacing */
-.block-container {
-    padding: 2rem;
+section[data-testid="stSidebar"] {
+    display: block !important;
+    visibility: visible !important;
+    width: 320px !important;
 }
 
-/* mobile safe */
-@media (max-width: 768px) {
-    .block-container {
-        padding: 1rem;
-    }
+/* SHOW HAMBURGER MENU */
+
+button[kind="header"] {
+    display: block !important;
+}
+
+/* SHOW COLLAPSE BUTTON */
+
+[data-testid="collapsedControl"] {
+    display: flex !important;
+    visibility: visible !important;
+}
+
+/* REMOVE EXTRA TOP SPACE */
+
+.block-container {
+    padding-top: 1rem;
 }
 
 </style>
 """, unsafe_allow_html=True)
-
 # =========================================
 # SESSION STATE DEFAULTS
 # =========================================
