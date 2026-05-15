@@ -56,7 +56,8 @@ create_users_table()
 st.set_page_config(
     page_title="InsightAI",
     page_icon="🧠",
-    layout="wide"
+    layout="wide",
+    initial_sidebar_state="expanded"
 )
 
 # =========================================
