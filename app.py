@@ -60,7 +60,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
     
 )
-st.session_state["_sidebar_open"] = True
+
 st.markdown("""
 <style>
 
@@ -202,7 +202,7 @@ apply_theme(st.session_state.dark_mode)
 # =========================================
 
 with st.sidebar:
-    st.sidebar.markdown("## ☰ Navigation")
+    st.markdown("## ☰ Navigation")
     st.title("⚙️ InsightAI")
 
     st.success(
