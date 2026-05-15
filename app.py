@@ -60,7 +60,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
     
 )
-
+st.session_state["_sidebar_open"] = True
 st.markdown("""
 <style>
 
