@@ -23,12 +23,19 @@ from styles.theme import apply_theme
 # =========================================
 
 from auth.auth_utils import (
+
     create_users_table,
+
     save_chat_history,
+
     get_dataset_history,
+
     get_chat_by_dataset,
+
     save_upload_history,
+
     save_report_history
+
 )
 
 from auth.login import login_page
@@ -50,7 +57,7 @@ st.set_page_config(
     page_title="InsightAI",
     page_icon="🧠",
     layout="wide",
-    initial_sidebar_state="auto"
+    initial_sidebar_state="expanded"
 )
 
 st.markdown("""
@@ -62,7 +69,12 @@ section[data-testid="stSidebar"] {
     max-width: 320px !important;
 }
 
-
+/* Keep sidebar visible on desktop */
+@media (min-width: 768px) {
+    section[data-testid="stSidebar"] {
+        transform: translateX(0px) !important;
+    }
+}
 
 </style>
 """, unsafe_allow_html=True)
@@ -73,22 +85,33 @@ section[data-testid="stSidebar"] {
 # =========================================
 
 defaults = {
+
     "df": None,
+
     "messages": [],
+
     "saved_chats": [],
+
     "dark_mode": False,
+
     "logged_in": False,
+
     "current_file": None,
+
     "user_email": None,
+
     "login_time": None,
+
     "selected_dataset": None,
+
     "active_tab": "📊 Overview"
+
 }
-
 for key, value in defaults.items():
-    if key not in st.session_state:
-        st.session_state[key] = value
 
+    if key not in st.session_state:
+
+        st.session_state[key] = value
 
 # =========================================
 # SESSION TIMEOUT
@@ -111,7 +134,6 @@ if st.session_state.logged_in:
 
             st.rerun()
 
-
 # =========================================
 # LOGIN / REGISTER
 # =========================================
@@ -130,19 +152,37 @@ if not st.session_state.logged_in:
         ]
     )
 
+    # =====================================
+    # LOGIN
+    # =====================================
+
     if menu == "Login":
 
         login_page()
 
         st.divider()
 
+        
+
+    # =====================================
+    # REGISTER
+    # =====================================
+
     elif menu == "Register":
 
         register_page()
 
+    # =====================================
+    # FORGOT PASSWORD
+    # =====================================
+
     elif menu == "Forgot Password":
 
         forgot_password_page()
+
+    # =====================================
+    # RESET PASSWORD
+    # =====================================
 
     elif menu == "Reset Password":
 
@@ -150,20 +190,18 @@ if not st.session_state.logged_in:
 
     st.stop()
 
-
 # =========================================
 # APPLY THEME
 # =========================================
 
 apply_theme(st.session_state.dark_mode)
 
-
 # =========================================
 # SIDEBAR
 # =========================================
 
 with st.sidebar:
-
+    st.sidebar.markdown("## ☰ Navigation")
     st.title("⚙️ InsightAI")
 
     st.success(
@@ -172,7 +210,10 @@ with st.sidebar:
 
     st.divider()
 
+    # =====================================
     # USER PROFILE
+    # =====================================
+
     st.subheader("👤 User Profile")
 
     st.write(
@@ -189,7 +230,10 @@ with st.sidebar:
 
     st.divider()
 
+    # =====================================
     # DATASET HISTORY
+    # =====================================
+
     st.subheader("📂 Dataset History")
 
     dataset_history = get_dataset_history(
@@ -197,8 +241,7 @@ with st.sidebar:
     )
 
     if len(dataset_history) > 0:
-
-        for i, dataset in enumerate(dataset_history):
+       for i, dataset in enumerate(dataset_history):
 
             dataset_name = dataset[0]
 
@@ -213,13 +256,18 @@ with st.sidebar:
                     dataset_name
                 )
 
+       
+
     else:
 
         st.caption("No dataset history")
 
     st.divider()
 
+    # =====================================
     # CHAT HISTORY
+    # =====================================
+
     st.subheader("💬 Dataset Chats")
 
     if st.session_state.selected_dataset:
@@ -272,7 +320,9 @@ with st.sidebar:
 
     st.divider()
 
-    # THEME TOGGLE
+    # =====================================
+    # THEME
+    # =====================================
 
     if st.button("🌓 Toggle Theme"):
 
@@ -282,7 +332,9 @@ with st.sidebar:
 
         st.rerun()
 
+    # =====================================
     # RESET APP
+    # =====================================
 
     if st.button("🔄 Reset App"):
 
@@ -296,7 +348,9 @@ with st.sidebar:
 
         st.rerun()
 
+    # =====================================
     # LOGOUT
+    # =====================================
 
     if st.button("🚪 Logout"):
 
@@ -313,7 +367,6 @@ with st.sidebar:
 
         st.rerun()
 
-
 # =========================================
 # HEADER
 # =========================================
@@ -324,7 +377,6 @@ st.caption(
     "AI Powered Analytics • Executive Dashboards • Smart Insights"
 )
 
-
 # =========================================
 # FILE UPLOAD
 # =========================================
@@ -333,7 +385,6 @@ uploaded_file = st.file_uploader(
     "📂 Upload CSV or Excel File",
     type=["csv", "xlsx"]
 )
-
 
 # =========================================
 # LOAD FILE
@@ -383,7 +434,6 @@ if uploaded_file is not None:
 
             st.error(f"❌ File Load Error: {e}")
 
-
 # =========================================
 # MAIN APP
 # =========================================
@@ -400,56 +450,101 @@ if st.session_state.df is not None:
         include="object"
     ).columns.tolist()
 
+    # =====================================
     # LIVE METRICS
-    show_metrics(df, numeric_columns)
+    # =====================================
 
-    # TABS
+    show_metrics(
+        df,
+        numeric_columns
+    )
+
+    # =====================================
+    # CUSTOM TAB SELECTOR
+    # =====================================
+
     tabs = [
 
         "📊 Overview",
+
         "📈 Visualization",
+
         "🧹 Cleaning",
+
         "🤖 AI Insights",
+
         "📄 Reports",
+
         "💬 InsightGPT"
 
     ]
 
     selected_tab = st.radio(
+
         "",
+
         tabs,
+
         horizontal=True,
+
         index=tabs.index(st.session_state.active_tab)
+
     )
+
+    # =====================================
+    # SAVE ACTIVE TAB
+    # =====================================
 
     st.session_state.active_tab = selected_tab
 
     st.divider()
 
+    # =====================================
     # OVERVIEW
+    # =====================================
+
     if selected_tab == "📊 Overview":
+
         show_overview(df)
 
+    # =====================================
     # VISUALIZATION
+    # =====================================
+
     elif selected_tab == "📈 Visualization":
+
         show_visualization(
             df,
             numeric_columns,
             categorical_columns
         )
 
+    # =====================================
     # CLEANING
+    # =====================================
+
     elif selected_tab == "🧹 Cleaning":
+
         show_cleaning(df)
 
+    # =====================================
     # AI INSIGHTS
+    # =====================================
+
     elif selected_tab == "🤖 AI Insights":
+
         show_ai_tab(df)
 
+    # =====================================
     # REPORTS
+    # =====================================
+
     elif selected_tab == "📄 Reports":
 
-        show_reports(df, numeric_columns)
+        show_reports(
+            df,
+            numeric_columns
+        )
 
         if st.button("📥 Save Report History"):
 
@@ -475,12 +570,18 @@ if st.session_state.df is not None:
                 "✅ Report Saved Successfully"
             )
 
+    # =====================================
     # CHATBOT
+    # =====================================
+
     elif selected_tab == "💬 InsightGPT":
 
         show_chatbot(df)
 
-        # SAVE CHAT
+        # =================================
+        # SAVE CHAT TO DATABASE
+        # =================================
+
         if len(st.session_state.messages) >= 2:
 
             last_user = st.session_state.messages[-2]
@@ -502,8 +603,15 @@ if st.session_state.df is not None:
 
                 ):
 
-                    question = last_user.get("content", "")
-                    answer = last_ai.get("content", "")
+                    question = last_user.get(
+                        "content",
+                        ""
+                    )
+
+                    answer = last_ai.get(
+                        "content",
+                        ""
+                    )
 
                     if question and answer:
 
@@ -516,22 +624,27 @@ if st.session_state.df is not None:
                         if chat_key not in st.session_state.saved_chats:
 
                             save_chat_history(
+
                                 st.session_state.user_email,
+
                                 question,
+
                                 answer,
+
                                 st.session_state.current_file
+
                             )
 
                             st.session_state.saved_chats.append(
                                 chat_key
                             )
-
 # =========================================
 # NO FILE
 # =========================================
 
 else:
-
+  
     st.info(
         "👆 Please upload a dataset to start analysis"
     )
+    
