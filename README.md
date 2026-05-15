@@ -14,6 +14,43 @@ Transform raw datasets into intelligent dashboards, AI insights, visualizations,
 🔗 https://insightai-midrurlhavkxhqdiopcibt.streamlit.app
 
 ---
+# 📸 Screenshots
+
+## 🔐 Login Page
+
+![Login Page](screenshots/login.png)
+
+---
+
+## 📊 Analytics Dashboard
+
+![Dashboard](screenshots/dashboard1.png)
+
+---
+
+## 📈 Data Visualization
+
+![Visualization](screenshots/visualization.png)
+
+---
+
+## 🤖 AI Insights
+
+![AI Insights](screenshots/insights.png)
+
+---
+
+## 💬 InsightGPT Chatbot
+
+![Chatbot](screenshots/insightai.png)
+
+---
+
+## 📄 PPT Report Generation
+
+![Reports](screenshots/genrate.png)
+
+---
 
 # 📌 Overview
 
