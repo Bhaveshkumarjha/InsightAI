@@ -13,7 +13,7 @@ AUTHORIZE_URL = "https://accounts.google.com/o/oauth2/auth"
 
 TOKEN_URL = "https://oauth2.googleapis.com/token"
 
-REDIRECT_URI = "http://localhost:8501"
+REDIRECT_URI = "https://insightai-midrurlhavkxhqdiopcibt.streamlit.app"
 
 # =====================================
 # OAUTH COMPONENT
