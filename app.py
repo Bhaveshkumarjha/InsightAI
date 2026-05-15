@@ -56,31 +56,32 @@ create_users_table()
 st.set_page_config(
     page_title="InsightAI",
     page_icon="🧠",
-    layout="centered",
-    initial_sidebar_state="collapsed"
+    layout="wide",
+    initial_sidebar_state="expanded"
 )
 
 st.markdown("""
 <style>
-/* Desktop */
+
+/* only visual styling - NO width forcing */
 section[data-testid="stSidebar"] {
-    width: 280px !important;
+    background-color: #f8f9fa;
 }
 
-/* Mobile Responsive Fix */
-@media only screen and (max-width: 768px) {
-    section[data-testid="stSidebar"] {
-        width: 220px !important;
-    }
+/* main content spacing */
+.block-container {
+    padding: 2rem;
+}
 
-    /* Make main content full width */
+/* mobile safe */
+@media (max-width: 768px) {
     .block-container {
-        padding: 1rem !important;
+        padding: 1rem;
     }
 }
+
 </style>
 """, unsafe_allow_html=True)
-
 
 # =========================================
 # SESSION STATE DEFAULTS
