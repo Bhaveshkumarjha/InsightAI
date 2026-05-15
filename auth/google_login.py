@@ -5,9 +5,9 @@ from streamlit_oauth import OAuth2Component
 # GOOGLE OAUTH CONFIG
 # =====================================
 
-CLIENT_ID = ""
+CLIENT_ID = st.secrets["GOOGLE_CLIENT_ID"]
 
-CLIENT_SECRET = ""
+CLIENT_SECRET = st.secrets["GOOGLE_CLIENT_SECRET"]
 
 AUTHORIZE_URL = "https://accounts.google.com/o/oauth2/auth"
 
