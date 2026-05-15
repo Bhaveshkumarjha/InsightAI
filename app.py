@@ -219,19 +219,22 @@ with st.sidebar:
     )
 
     if len(dataset_history) > 0:
+       for i, dataset in enumerate(dataset_history):
 
-    for i, dataset in enumerate(dataset_history):
+            dataset_name = dataset[0]
 
-        dataset_name = dataset[0]
+            unique_key = f"dataset_{dataset_name}_{i}"
 
-        if st.button(
-            f"📊 {dataset_name}",
-            key=f"dataset_{dataset_name}_{i}"
-        ):
+            if st.button(
+                f"📊 {dataset_name}",
+                key=unique_key
+            ):
 
-            st.session_state.selected_dataset = (
-                dataset_name
-            )
+                st.session_state.selected_dataset = (
+                    dataset_name
+                )
+
+       
 
     else:
 
