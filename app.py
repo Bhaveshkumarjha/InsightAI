@@ -64,10 +64,7 @@ st.set_page_config(
 st.markdown("""
 <style>
 
-/* only visual styling - NO width forcing */
-section[data-testid="stSidebar"] {
-    background-color: #f8f9fa;
-}
+
 
 /* main content spacing */
 .block-container {
