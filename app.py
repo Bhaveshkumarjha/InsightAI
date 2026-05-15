@@ -56,26 +56,28 @@ create_users_table()
 st.set_page_config(
     page_title="InsightAI",
     page_icon="🧠",
-    layout="wide",
-    initial_sidebar_state="expanded"
+    layout="centered",
+    initial_sidebar_state="collapsed"
 )
 
 st.markdown("""
 <style>
-
-/* Sidebar width */
+/* Desktop */
 section[data-testid="stSidebar"] {
-    min-width: 320px !important;
-    max-width: 320px !important;
+    width: 280px !important;
 }
 
-/* Keep sidebar visible on desktop */
-@media (min-width: 768px) {
+/* Mobile Responsive Fix */
+@media only screen and (max-width: 768px) {
     section[data-testid="stSidebar"] {
-        transform: translateX(0px) !important;
+        width: 220px !important;
+    }
+
+    /* Make main content full width */
+    .block-container {
+        padding: 1rem !important;
     }
 }
-
 </style>
 """, unsafe_allow_html=True)
 
