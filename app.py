@@ -62,12 +62,7 @@ section[data-testid="stSidebar"] {
     max-width: 320px !important;
 }
 
-/* Keep sidebar visible on desktop */
-@media (min-width: 768px) {
-    section[data-testid="stSidebar"] {
-        transform: translateX(0px) !important;
-    }
-}
+
 
 </style>
 """, unsafe_allow_html=True)
