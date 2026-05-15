@@ -60,6 +60,18 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+st.markdown("""
+<style>
+    section[data-testid="stSidebar"] {
+        display: block !important;
+    }
+
+    button[kind="header"] {
+        display: block !important;
+    }
+</style>
+""", unsafe_allow_html=True)
+
 # =========================================
 # SESSION STATE DEFAULTS
 # =========================================
