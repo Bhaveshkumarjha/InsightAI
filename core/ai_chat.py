@@ -1,7 +1,7 @@
 from groq import Groq
 
 client = Groq(
-    api_key=" "
+    api_key=st.secrets["GROQ_API_KEY"]
 )
 
 def ask_ai(df, prompt):
