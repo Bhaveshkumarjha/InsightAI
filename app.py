@@ -181,7 +181,7 @@ apply_theme(st.session_state.dark_mode)
 # =========================================
 
 with st.sidebar:
-
+    st.sidebar.markdown("## ☰ Navigation")
     st.title("⚙️ InsightAI")
 
     st.success(
