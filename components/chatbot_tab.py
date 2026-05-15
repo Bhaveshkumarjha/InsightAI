@@ -89,7 +89,7 @@ def show_chatbot(df):
         with st.chat_message("assistant"):
 
             with st.spinner(
-                "Insight Copilot is analyzing your data..."
+                "Insight GPT is analyzing your data..."
             ):
 
                 try:
