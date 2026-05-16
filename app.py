@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import time
 from datetime import datetime
-
+import sqlite3
 from core.file_handler import load_file
 from core.ppt_generator import generate_ppt
 
@@ -244,8 +244,43 @@ with st.sidebar:
         f"✅ Logged in as:\n{st.session_state.user_email}"
     )
 
-    st.divider()
+    # =====================================
+    # ADMIN ANALYTICS
+    # =====================================
 
+    if st.session_state.user_email == "kumarjeebhavesh@gmail.com":
+
+        st.divider()
+        st.subheader("📊 Admin Dashboard")
+
+        conn = sqlite3.connect("auth/database.db")
+        cursor = conn.cursor()
+
+        # Total Users
+        cursor.execute("SELECT COUNT(*) FROM users")
+        total_users = cursor.fetchone()[0]
+
+        # Total Uploads
+        cursor.execute("SELECT COUNT(*) FROM upload_history")
+        total_uploads = cursor.fetchone()[0]
+
+        # Total Chats
+        cursor.execute("SELECT COUNT(*) FROM chat_history")
+        total_chats = cursor.fetchone()[0]
+
+        # Total Reports
+        cursor.execute("SELECT COUNT(*) FROM report_history")
+        total_reports = cursor.fetchone()[0]
+
+        conn.close()
+
+        st.metric("👥 Total Users", total_users)
+        st.metric("📂 Total Uploads", total_uploads)
+        st.metric("💬 Total Chats", total_chats)
+        st.metric("📄 Reports Generated", total_reports)
+
+        st.divider()
+    
     # =====================================
     # USER PROFILE
     # =====================================
