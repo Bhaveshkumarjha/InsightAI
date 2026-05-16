@@ -17,6 +17,7 @@ from components.metrics import show_metrics
 
 from auth.google_login import google_login
 from styles.theme import apply_theme
+import streamlit.components.v1 as components
 
 # =========================================
 # AUTH IMPORTS
