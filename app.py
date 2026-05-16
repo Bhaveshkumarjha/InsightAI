@@ -61,7 +61,29 @@ st.set_page_config(
     initial_sidebar_state="expanded"
     
 )
+# =========================================
+# GOOGLE ANALYTICS
+# =========================================
 
+GA_ID = "G-MN20GPVD69"
+
+components.html(
+    f"""
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>
+
+    <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag(){{dataLayer.push(arguments);}}
+
+      gtag('js', new Date());
+
+      gtag('config', '{GA_ID}');
+    </script>
+    """,
+    height=0,
+)
 st.markdown("""
 <style>
 
@@ -93,26 +115,6 @@ button[kind="header"] {
 }
 
 </style>
-""", unsafe_allow_html=True)
-# =========================================
-# GOOGLE ANALYTICS
-# =========================================
-
-GA_ID = "G-MN20GPVD69"
-
-st.markdown(f"""
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>
-
-<script>
-window.dataLayer = window.dataLayer || [];
-
-function gtag(){{dataLayer.push(arguments);}}
-
-gtag('js', new Date());
-
-gtag('config', '{GA_ID}');
-</script>
 """, unsafe_allow_html=True)
 # =========================================
 # SESSION STATE DEFAULTS
