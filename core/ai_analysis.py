@@ -31,7 +31,7 @@ def generate_ai_summary(df):
         messages=[
             {"role": "user", "content": prompt}
         ],
-        model="llama-3.3-70b-versatile"
+        model="openai/gpt-oss-120b"
     )
 
     return response.choices[0].message.content
