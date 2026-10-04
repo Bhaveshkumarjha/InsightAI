@@ -28,7 +28,7 @@ def ask_ai(df, prompt):
         messages=[
             {"role": "user", "content": full_prompt}
         ],
-        model="llama-3.3-70b-versatile"
+        model="openai/gpt-oss-120b"
     )
 
     return response.choices[0].message.content
